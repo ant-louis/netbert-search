@@ -1,4 +1,11 @@
-# RFC Search Engine
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+# Neural Search Engine
+
+This repository provides the implementation of a neural search engine for [RFC](https://en.wikipedia.org/wiki/Request_for_Comments) documents that use pre-trained [NetBERT](https://github.com/antoiloui/netbert) model.
+
+## Table of contents
+
 
 ## System architecture
 
@@ -152,4 +159,9 @@ bash index_documents.sh $DATA_DIR
 ```
 
 #### Open browser
-Go to http://127.0.0.1:5000. 
+Go to http://127.0.0.1:5000.
+
+***
+
+#### Credits
+This project was inspired by [Hironsan](https://github.com/Hironsan/bertsearch).
