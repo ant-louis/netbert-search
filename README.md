@@ -175,6 +175,8 @@ bash index_documents.sh $DATA_DIR
 
 Open your browser and go to http://127.0.0.1:5000.
 
+![Example](./-/figures/example.png)
+
 ***
 
 * **Credits**: This project was inspired by [Hironsan](https://github.com/Hironsan/bertsearch).
