@@ -2,20 +2,32 @@
 
 # Neural Search Engine
 
-This repository provides the implementation of a neural search engine for [RFC](https://en.wikipedia.org/wiki/Request_for_Comments) documents that use pre-trained [NetBERT](https://github.com/antoiloui/netbert) model.
+This repository provides the implementation of a neural search engine for [RFC](https://en.wikipedia.org/wiki/Request_for_Comments) documents that use a pre-trained [NetBERT](https://github.com/antoiloui/netbert) model for information retrieval.
 
 ## Table of contents
+1. [System Architecture](#architecture)
+2. [Setup](#setup)
+    1. [Requirements](#requirements)
+    2. [Download a pre-trained NetBERT model](#download_netbert)
+    3. [Launch the Docker containers](#launch)
+3. [Index creation](#index_creation)
+    1. [Download RFC data](#donwload_rfc)
+    2. [Clean and process data](#process_rfc)
+    3. [Convert data in proper format](#convert_data)
+    4. [Create index](#create_index)
+    5. [Create documents](#create_documents)
+    6. [Index documents](#index_documents)
+4. [Let's search!](#search)
 
 
-## System architecture
+## 1. System architecture <a name="architecture"></a>
 
 ![System architecture](./-/figures/architecture.png)
 
-## Getting Started
 
-### 1. Setup
+## 2. Setup <a name="setup"></a>
 
-#### Requirements
+### Requirements <a name="requirements"></a>
 The following section lists the requirements in order to start running the project.
 
 This project is based on Docker containers, so ensure to have [Docker](https://docs.docker.com/v17.12/install/) and [docker-compose](https://docs.docker.com/compose/install/) installed on your machine. In addition, your machine should dispose from a working version of Python 3.6 as well as the following packages:
@@ -29,8 +41,8 @@ These libraries can be installed automatically by running the following command 
 pip install -r requirements.txt
 ```
 
-#### Download pre-trained NetBERT model
-You can download the pre-trained NetBERT model with [🤗 transformers](https://github.com/huggingface/transformers) as follows:
+### Download a pre-trained NetBERT model <a name="download_netbert"></a>
+You can download the pre-trained [NetBERT](https://github.com/antoiloui/netbert) model with [🤗 transformers](https://github.com/huggingface/transformers) as follows:
 ```
 from transformers import AutoTokenizer, AutoModel
 
@@ -59,34 +71,35 @@ Finally, set the following environnement variable with the path of the folder co
 export PATH_MODEL=$path/to/local/folder/tensorflow
 ```
 
-####  Launch the Docker containers
+###  Launch the Docker containers <a name="launch"></a>
 In order to run the containers, run the following command:
 ```bash
 make install
 ```
 
-### 2. Index creation
+## 3. Index creation <a name="index_creation"></a>
+
 Go into the *'index_creation'* repository:
 ```bash
 cd index_creation/
 ```
 
-#### Download RFC data
+### Download RFC data <a name="download_rfc"></a>
 ```bash
 bash download_data.sh $OUT_DIR
 ```
 
-#### Clean and process data
+### Clean and process data <a name="process_rfc"></a>
 ```bash
 bash clean_data.sh $DATA_DIR
 ```
 
-#### Convert data in proper format
+### Convert data in proper format <a name="convert_data"></a>
 ```bash
 bash convert_data_format.sh $DATA_DIR
 ```
 
-#### Create index
+### Create index <a name="create_index"></a>
 You can use the create index API to add a new index to an Elasticsearch cluster. When creating an index, you can specify the following:
 * Settings for the index
 * Mappings for fields in the index
@@ -127,7 +140,7 @@ $ bash create_index.sh
 *NB*: The `dims` value of `text_vector` must need to match the dims of a pretrained BERT model.
 
 
-#### Create documents
+### Create documents <a name="create_documents"></a>
 Once you created an index, you’re ready to index some document. The point here is to convert your document into a vector using BERT. The resulting vector is stored in the `text_vector` field. Let`s convert your data into a JSON document:
 
 ```bash
@@ -152,14 +165,15 @@ After finishing the script, you get a JSON document as follows:
 ...
 ```
 
-#### Index documents
+### Index documents <a name="index_documents"></a>
 After converting your data into a JSON, you can adds a JSON document to the specified index and makes it searchable:
 ```bash
 bash index_documents.sh $DATA_DIR
 ```
 
-#### Open browser
-Go to http://127.0.0.1:5000.
+## 4. Let's search! <a name="search"></a>
+
+Open browser and go to http://127.0.0.1:5000.
 
 ***
 
