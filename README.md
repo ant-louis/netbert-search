@@ -177,4 +177,4 @@ Open browser and go to http://127.0.0.1:5000.
 
 ***
 
-**Credits** This project was inspired by [Hironsan](https://github.com/Hironsan/bertsearch).
+***Credits*** This project was inspired by [Hironsan](https://github.com/Hironsan/bertsearch).
