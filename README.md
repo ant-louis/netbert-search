@@ -1,6 +1,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# Neural Search Engine
+# NetBERT Search Engine
 
 This repository provides the implementation of a neural search engine for [RFC](https://en.wikipedia.org/wiki/Request_for_Comments) documents that use a pre-trained [NetBERT](https://github.com/antoiloui/netbert) model for information retrieval.
 
